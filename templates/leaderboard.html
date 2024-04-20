@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRisdGDwtDivHF3APiFFzPq2r_2PETMWLUdT4-gSWk7HnT-rcy4fngqSVBKAk-8CilJqIA&usqp=CAU">
+    <meta charset="utf-8" />
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <style>
+        .number-column {
+            counter-reset: rowNumber;
+        }
+        .number-column td:first-child:before {
+            counter-increment: rowNumber;
+            content: counter(rowNumber);
+        }
+    </style>
+
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="/">ASRun</a>
+      <a href="/search">Search</a>
+      <a class="active" href="/leaderboard">Leaderboard</a>
+      <a href="/tips">Tips</a>
+    </div>
+    <br>
+    <h1>Leaderboard</h1>
+    <table class="number-column">
+      <tr>
+        <th>Ranking</th>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Total Distance/km</th>
+      </tr>
+      {% for row in rows %}
+      <tr>
+        <td></td>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br><hr><br>
+    
+  </body>
+</html>

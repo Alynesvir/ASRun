@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRisdGDwtDivHF3APiFFzPq2r_2PETMWLUdT4-gSWk7HnT-rcy4fngqSVBKAk-8CilJqIA&usqp=CAU">
+    <meta charset="utf-8" />
+    <title>Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="/">ASRun</a>
+      <a class="active" href="/search">Search</a>
+      <a href="/leaderboard">Leaderboard</a>
+      <a href="/tips">Tips</a>
+    </div>
+    <br>
+    <h1>Find a Run</h1>
+    <div class="centered-form">
+    <form method='post' action="{{ request.path }}">
+      <input type="text" id="student_id" name="student_id" placeholder="Student ID" required/>
+      <input type="submit" value="Submit" />
+    </form>
+    </div>
+    <br><hr><br>
+    <h1>Student ID: {{student_id}}</h1>
+    <br>
+    <table>
+      <tr>
+        <!-- <th>Student ID</th> -->
+        <!-- <th>Name</th> -->
+        <!-- <th>Class</th> -->
+        <th>Distance/km</th>
+        <th>Time/min</th>
+        <th>Date</th>
+      </tr>
+      {% for row in rows %}
+      <tr>
+        <!-- <td>{{ row[0] }}</td> -->
+        <!-- <td>{{ row[1] }}</td> -->
+        <!-- <td>{{ row[2] }}</td> -->
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br><hr><br>
+    {% if error %}
+    <p style="color: red;">Error: Student ID already exists with a different name</p>
+    {% endif %}
+  </body>
+</html>
